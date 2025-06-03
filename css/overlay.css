@@ -16,6 +16,10 @@
   position: relative;
   max-width: 90%;
   max-height: 90%;
+  display: flex;
+  justify-content: center; /* Horizontally center the image */
+  align-items: center;     /* Vertically center the image */
+  overflow: hidden; /* Clip zoomed image parts */
 }
 
 .overlay-content img {
