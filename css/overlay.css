@@ -1,0 +1,51 @@
+/* Overlay styles */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.overlay-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  justify-content: center; /* Horizontally center the image */
+  align-items: center;     /* Vertically center the image */
+  overflow: hidden; /* Clip zoomed image parts */
+}
+
+.overlay-content img {
+  display: block; /* Ensure it's a block element */
+  width: auto; /* JS will set specific width */
+  height: auto; /* JS will set specific height */
+  object-fit: contain; /* Still good as a fallback/behavior */
+  margin: auto; /* Helps centering if there's space in overlay-content */
+  cursor: grab;
+}
+
+.overlay-content img.zooming {
+  cursor: grabbing;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Class to blur the background page */
+.blur-background {
+  filter: blur(5px);
+}
