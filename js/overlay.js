@@ -86,7 +86,10 @@ document.addEventListener('DOMContentLoaded', function() {
         overlayImage.dataset.naturalHeight = naturalHeight;
 
         overlay.style.display = 'flex'; // Ensure overlay is visible
-        document.body.classList.add('blur-background'); // Blur the background
+        const pageWrapper = document.getElementById('page-wrapper');
+        if (pageWrapper) {
+          pageWrapper.classList.add('blur-background');
+        }
     };
 
     overlayImage.onload = handleImageLoad;
@@ -191,7 +194,10 @@ document.addEventListener('DOMContentLoaded', function() {
   function closeOverlay() {
     if (overlay) {
       overlay.style.display = 'none';
-      document.body.classList.remove('blur-background'); // Remove blur from background
+      const pageWrapper = document.getElementById('page-wrapper');
+      if (pageWrapper) {
+        pageWrapper.classList.remove('blur-background');
+      }
       // Reset zoom
       const overlayImage = overlay.querySelector('#overlayImage');
       if (overlayImage) {
