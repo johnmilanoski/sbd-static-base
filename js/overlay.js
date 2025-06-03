@@ -36,12 +36,72 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const overlayImage = overlay.querySelector('#overlayImage');
+
+    // Reset any previous styles that might affect natural dimension reading or display
+    overlayImage.style.width = 'auto';
+    overlayImage.style.height = 'auto';
+    overlayImage.style.maxWidth = 'none';
+    overlayImage.style.maxHeight = 'none';
+    overlayImage.style.transform = 'scale(1)'; // Reset zoom
+
+    let scale = 1; // Reset scale variable for the new image
+
+    const handleImageLoad = () => {
+        const naturalWidth = overlayImage.naturalWidth;
+        const naturalHeight = overlayImage.naturalHeight;
+
+        if (naturalWidth === 0 || naturalHeight === 0) {
+            // Image failed to load or is not a valid image
+            console.error("Image failed to load or is not valid:", overlayImage.src);
+            closeOverlay(); // Close overlay if image is bad
+            return;
+        }
+
+        const viewportWidth = window.innerWidth * 0.9;
+        const viewportHeight = window.innerHeight * 0.9;
+        const imageAspectRatio = naturalWidth / naturalHeight;
+
+        let displayWidth = naturalWidth;
+        let displayHeight = naturalHeight;
+
+        // Scale down to fit viewport if necessary
+        if (displayWidth > viewportWidth) {
+            displayWidth = viewportWidth;
+            displayHeight = displayWidth / imageAspectRatio;
+        }
+        if (displayHeight > viewportHeight) {
+            displayHeight = viewportHeight;
+            displayWidth = displayHeight * imageAspectRatio;
+        }
+
+        // Ensure it doesn't exceed natural dimensions (it shouldn't with above logic, but as a safeguard)
+        displayWidth = Math.min(displayWidth, naturalWidth);
+        displayHeight = Math.min(displayHeight, naturalHeight);
+
+        overlayImage.style.width = displayWidth + 'px';
+        overlayImage.style.height = displayHeight + 'px';
+
+        // Store natural dimensions for zoom limiting, perhaps on data attributes
+        overlayImage.dataset.naturalWidth = naturalWidth;
+        overlayImage.dataset.naturalHeight = naturalHeight;
+
+        overlay.style.display = 'flex'; // Ensure overlay is visible
+        document.body.classList.add('blur-background'); // Blur the background
+    };
+
+    overlayImage.onload = handleImageLoad;
+    overlayImage.onerror = () => {
+        console.error("Error loading image:", overlayImage.src);
+        closeOverlay(); // Close overlay if image fails to load
+    };
+
     overlayImage.src = imageSrc;
-    overlay.style.display = 'flex'; // Use flex for centering
-    document.body.classList.add('blur-background'); // Blur the background
+
+    if (overlayImage.complete && overlayImage.naturalWidth > 0) { // Check if already loaded (e.g. from cache) and valid
+        handleImageLoad();
+    }
 
     // Zoom functionality
-    let scale = 1;
     let isZooming = false;
     let startX, startY, initialScale;
 
@@ -72,7 +132,20 @@ document.addEventListener('DOMContentLoaded', function() {
             scale = initialScale - (distance / 100);
         }
 
-        scale = Math.max(0.5, Math.min(scale, 3)); // Clamp scale between 0.5x and 3x
+        const naturalWidth = parseFloat(overlayImage.dataset.naturalWidth);
+        const naturalHeight = parseFloat(overlayImage.dataset.naturalHeight);
+        const displayedWidth = parseFloat(overlayImage.style.width);
+        const displayedHeight = parseFloat(overlayImage.style.height);
+
+        let maxScale = 1;
+        if (displayedWidth > 0 && displayedHeight > 0 && naturalWidth > 0 && naturalHeight > 0) {
+            const maxScaleW = naturalWidth / displayedWidth;
+            const maxScaleH = naturalHeight / displayedHeight;
+            maxScale = Math.min(maxScaleW, maxScaleH);
+        }
+        maxScale = Math.max(maxScale, 0.5); // Ensure maxScale is at least min zoom
+
+        scale = Math.max(0.5, Math.min(scale, maxScale));
         overlayImage.style.transform = `scale(${scale})`;
     });
 
@@ -94,7 +167,21 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         const delta = e.deltaY > 0 ? -0.1 : 0.1; // Zoom out for scroll down, in for scroll up
         scale += delta;
-        scale = Math.max(0.5, Math.min(scale, 3)); // Clamp scale
+
+        const naturalWidth = parseFloat(overlayImage.dataset.naturalWidth);
+        const naturalHeight = parseFloat(overlayImage.dataset.naturalHeight);
+        const displayedWidth = parseFloat(overlayImage.style.width);
+        const displayedHeight = parseFloat(overlayImage.style.height);
+
+        let maxScale = 1;
+        if (displayedWidth > 0 && displayedHeight > 0 && naturalWidth > 0 && naturalHeight > 0) {
+            const maxScaleW = naturalWidth / displayedWidth;
+            const maxScaleH = naturalHeight / displayedHeight;
+            maxScale = Math.min(maxScaleW, maxScaleH);
+        }
+        maxScale = Math.max(maxScale, 0.5); // Ensure maxScale is at least min zoom
+
+        scale = Math.max(0.5, Math.min(scale, maxScale));
         overlayImage.style.transform = `scale(${scale})`;
     });
 
