@@ -289,9 +289,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const oldScale = overlayState.scale;
 
-        // Multiplicative scaling factor
-        const scaleFactor = e.deltaY > 0 ? 0.9 : 1.1; // Adjust for sensitivity. 0.9 = zoom out, 1.1 = zoom in
-        let newScale = oldScale * scaleFactor;
+        const zoomFactorPerTick = 0.05; // Reduced from ~0.1 (10%) to 0.05 (5%)
+        const direction = e.deltaY > 0 ? -1 : 1; // -1 for zoom out (scroll down), 1 for zoom in (scroll up)
+        let newScale = oldScale * (1 + direction * zoomFactorPerTick);
 
         // Calculate maxEffectiveScale based on natural vs displayed dimensions
         let maxEffectiveScale = 1; // Default if displayed dimensions are zero
