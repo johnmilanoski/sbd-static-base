@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="We are a full service design studio specializing in yacht interior design — creating your 'dream boat' from concept to reality.">
+  <meta name="keywords" content="interior design, yacht design, yacht interior design, interior architecture, space layout, yacht fixtures, furnishings, yacht art, yacht lighting, yacht accessories, residential interior design">
+  <meta name="author" content="Sylvia Bolton">
+  <link rel="icon" href="pics/favicon.ico" type="image/x-icon">
+  <title>Sylvia Bolton Design – Yacht Interior Design</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="bs_css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* === Container & Column Layout === */
+    .container_design {
+      max-width: 1200px;
+      margin: 80px auto 40px; /* top margin to clear fixed navbar */
+      overflow: hidden;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .leftColumn_design {
+      float: left;
+      width: 40%; /* 2/5 of container */
+      padding-right: 2%;
+      box-sizing: border-box;
+    }
+    .rightColumn_design {
+      float: left;
+      width: 58%; /* 3/5 of container (remaining minus padding) */
+      padding-left: 2%;
+      box-sizing: border-box;
+    }
+    @media screen and (max-width: 768px) {
+      .leftColumn_design, .rightColumn_design {
+        float: none;
+        width: auto;
+        padding: 0;
+      }
+    }
+
+    /* === Section Headings / Titles === */
+    .section-heading {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-top: 30px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #e1e1e1;
+      padding-bottom: 6px;
+    }
+    .section-content {
+      margin-left: 20px;
+    }
+
+    /* === Sylvia Portrait === */
+    #sylvia_pic img {
+      width: 100%;
+      max-width: 512px; /* width equal to 4 magazine icons + margins */
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    /* === Magazine Covers (Boat Reviews) === */
+    #mag_image {
+      width: 120px;
+      margin: 4px;
+      height: auto;
+      display: inline-block;
+    }
+    #boat-reviews {
+      margin-top: 30px;
+    }
+
+    /* === Featured Yacht Panels === */
+    .panel-yacht {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      transition: box-shadow 0.3s ease;
+    }
+    .panel-yacht:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .panel-yacht .panel-heading {
+      background-color: #f5f5f5;
+      padding: 10px 15px;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    .panel-yacht .panel-body {
+      padding: 10px 15px;
+      position: relative; /* so we can float the button */
+    }
+    .panel-yacht .btn {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* === "Read Designer’s Profile" Image Only === */
+    .profile-link {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .profile-link img {
+      width: 75%; /* fill 75% of the left column */
+      height: auto;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .profile-link a {
+      text-decoration: none;
+    }
+
+    /* === Contact Link at Bottom === */
+    #contact-section {
+      text-align: center;
+      margin: 60px 0;
+    }
+    #contact-section h3 {
+      font-size: 1.75rem;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+    #contact-section a {
+      font-size: 1.25rem;
+      color: #007bff;
+      text-decoration: none;
+    }
+    #contact-section a:hover {
+      text-decoration: underline;
+    }
+
+    /* === Footer === */
+    footer {
+      background-color: #f8f9fa;
+      padding: 30px 15px;
+    }
+    #bottom_bar {
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Fixed Navbar (original code) -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button
+          type="button"
+          class="navbar-toggle collapsed"
+          data-toggle="collapse"
+          data-target="#navbar"
+          aria-expanded="false"
+          aria-controls="navbar"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img
+          id="logo"
+          src="pics/sb_logo_sm.png"
+          width="82"
+          height="66"
+          alt="Sylvia Bolton Design Logo"
+        />
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.php.html">HOME</a></li>
+          <li class="dropdown">
+            <a
+              href="company.php.html#"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              YACHTS <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="yacht_index.php.html">COMPLETED</a></li>
+              <li><a href="in_progress_index.php.html">IN PROGRESS</a></li>
+            </ul>
+          </li>
+          <li><a href="other_index.php.html">OTHER PROJECTS</a></li>
+          <li class="dropdown">
+            <a
+              href="company.php.html#"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              ABOUT <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="company.php.html">THE STUDIO</a></li>
+              <li><a href="design.php.html">DESIGN PROCESS</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.php.html">CONTACT</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- END Navbar -->
+
+  <div class="container_design">
+    <!-- Two-Column Layout -->
+    <div class="leftColumn_design">
+      <!-- About Sylvia Title -->
+      <h2 class="section-heading">About Sylvia</h2>
+      <div class="section-content">
+        <!-- Original Studio Text -->
+        <p>
+          Sylvia Bolton established her studio in 1993 after working with renowned yacht
+          designer Glade Johnson. Originally from Bulgaria, Sylvia traveled extensively
+          throughout Europe and Africa and studied in Italy before relocating to Seattle,
+          where her fascination with boats led her to specialize in yacht interior
+          architecture and design.
+        </p>
+        <p>
+          Over the years, Sylvia has worked on both custom and production yachts, blending
+          her fine art and industrial design background to approach each project as a unique
+          work of art—where composition, form, and function unite seamlessly.
+        </p>
+        <p>
+          Beyond yacht interiors, Sylvia has extended her design expertise to residences,
+          private clubs, and aircraft, collaborating with many of her yachting clients to
+          bring a cohesive, sophisticated vision to a variety of spaces. She partners
+          closely with shipyards and clients throughout North America and abroad.
+        </p>
+        <p>
+          Since joining Westport Yachts in 2018, Sylvia has focused exclusively on the
+          design and evolution of the Westport Yacht line.
+        </p>
+      </div>
+
+      <!-- Featured Yacht Projects -->
+      <h2 class="section-heading">Featured Yacht Projects</h2>
+      <div class="section-content">
+        <!-- Westport W117 Panel -->
+        <div class="panel-yacht">
+          <div class="panel-heading">Westport W117 (35m)</div>
+          <div class="panel-body">
+            <p>Raised Pilothouse Motor Yacht</p>
+            <a
+              href="https://westportyachts.com/yachts/westport-117"
+              class="btn btn-default"
+              target="_blank"
+              >View Project →</a
+            >
+          </div>
+        </div>
+
+        <!-- Westport W135 Panel -->
+        <div class="panel-yacht">
+          <div class="panel-heading">Westport W135 (41m)</div>
+          <div class="panel-body">
+            <p>Raised Pilothouse Motor Yacht</p>
+            <a
+              href="https://westportyachts.com/yachts/westport-135"
+              class="btn btn-default"
+              target="_blank"
+              >View Project →</a
+            >
+          </div>
+        </div>
+
+        <!-- Westport W172 Panel -->
+        <div class="panel-yacht">
+          <div class="panel-heading">Westport W172 (52m)</div>
+          <div class="panel-body">
+            <p>Tri‑Deck Luxury Motor Yacht</p>
+            <a
+              href="https://westportyachts.com/yachts/westport-172"
+              class="btn btn-default"
+              target="_blank"
+              >View Project →</a
+            >
+          </div>
+        </div>
+
+        <!-- "Read Designer’s Profile" Image Only -->
+        <div class="profile-link">
+          <a href="pdf/sylvia_bio_article.pdf" target="_blank">
+            <img src="pics/mag_profile_icon.jpg" alt="Read Designer’s Profile" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rightColumn_design">
+      <!-- Sylvia Portrait -->
+      <div id="sylvia_pic">
+        <img
+          src="pics/sylvia_on_boat_crop.jpg"
+          alt="Sylvia Bolton seated at her drafting desk"
+        />
+      </div>
+
+      <!-- Boat Reviews (Magazine Covers) -->
+      <h2 class="section-heading">Boat Reviews</h2>
+      <div id="boat-reviews">
+        <!-- 14 Magazine Covers -->
+        <a href="magazines/juanky_showboat.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/juanky_showboat.jpg"
+            alt="Juanky featured in ShowBoat magazine"
+          />
+        </a>
+        <a href="magazines/juanky_yachting.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/juanky_yachting.jpg"
+            alt="Juanky featured in Yachting magazine"
+          />
+        </a>
+        <a href="magazines/anaya_yachts_international.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/anaya_yachts_international.jpg"
+            alt="Anaya featured in Yachts International"
+          />
+        </a>
+        <a href="magazines/bravo88_showboat.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/bravo88_showboat.jpg"
+            alt="Bravo 88 featured in ShowBoat magazine"
+          />
+        </a>
+        <a href="magazines/bravo78_southern_boating.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/bravo78_southern_boating.jpg"
+            alt="Bravo 78 featured in Southern Boating magazine"
+          />
+        </a>
+        <a href="magazines/bravo88_yachting.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/bravo88_yachting.jpg"
+            alt="Bravo 88 featured in Yachting magazine"
+          />
+        </a>
+        <a href="magazines/bravo78_yachts_international.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/bravo78_yachts_international.jpg"
+            alt="Bravo 78 featured in Yachts International magazine"
+          />
+        </a>
+        <a href="magazines/bravo88_yachts.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/bravo88_yachts.jpg"
+            alt="Bravo 88 featured in Yachts magazine"
+          />
+        </a>
+        <a href="magazines/escapade_passagemaker.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/escapade_passagemaker.jpg"
+            alt="Escapade featured in Passagemaker magazine"
+          />
+        </a>
+        <a href="magazines/mazu_boat_international.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/mazu_boat_international.jpg"
+            alt="Mazu featured in Boat International magazine"
+          />
+        </a>
+        <a href="magazines/mazu_showboats.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/mazu_showboats.jpg"
+            alt="Mazu featured in ShowBoats magazine"
+          />
+        </a>
+        <a href="magazines/serenity_yachting.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/serenity_yachting.jpg"
+            alt="Serenity featured in Yachting magazine"
+          />
+        </a>
+        <a href="magazines/alexis_boatbuilder.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/alexis_boatbuilder.jpg"
+            alt="Alexis featured in Boatbuilder magazine"
+          />
+        </a>
+        <a href="magazines/juanky_yachts_international.pdf" target="_blank">
+          <img
+            id="mag_image"
+            src="magazines/juanky_yachts_international.jpg"
+            alt="Juanky featured in Yachts International magazine"
+          />
+        </a>
+      </div>
+    </div>
+
+    <!-- Clearfix -->
+    <div style="clear: both;"></div>
+
+    <!-- Contact Section -->
+    <div id="contact-section">
+      <h3>Interested in a Custom Interior for Your Yacht?</h3>
+      <p><a href="contact.php.html">Contact Sylvia Today →</a></p>
+    </div>
+  </div>
+  <!-- END container_design -->
+
+  <!-- Footer -->
+  <footer>
+    <div id="bottom_bar">
+      © Sylvia Bolton Design – all rights reserved
+    </div>
+  </footer>
+  <!-- END Footer -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    window.jQuery ||
+      document.write(
+        '<script src="https://sylviabolton.com/assets/js/vendor/jquery.min.js"><\/script>'
+      );
+  </script>
+  <script src="bs_js/bootstrap.min.js"></script>
+  <script src="bs_js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
