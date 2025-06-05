@@ -37,7 +37,7 @@ a, a:link, a:visited, a:hover, a:active {
 img {
   border:0;
 	height:auto;
-	width:100%;
+	max-width:100%; /* Changed from width:100% */
 	}
 table {
 	background:none repeat scroll 0 0 #fff;
