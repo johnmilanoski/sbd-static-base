@@ -61,7 +61,20 @@
 	}
 }	
 	
-	
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 </style>
 
   </head>
@@ -128,8 +141,8 @@
 
 		</DIV>
 		<div class="rightColumn">
-<div style="display: flex; justify-content: center;">
-<iframe width="1600" height="900" src="https://www.youtube.com/embed/1KGmiRT7yK4?si=rGJqDzReQlrHooAj&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div style="display: flex; justify-content: center;" class="video-container">
+<iframe src="https://www.youtube.com/embed/1KGmiRT7yK4?si=rGJqDzReQlrHooAj&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
 <BR><div class='photo_txt'>&nbsp;<BR><BR></div>
 			<img id='yacht_image' src='img/yachts_complete/Tintin/01-Thumbnail2025-06-01_12-56-39.jpg' /><BR><div class='photo_txt'>&nbsp;<BR><BR></div>
 			<img id='yacht_image' src='img/yachts_complete/Tintin/02--MD-Salon1.jpg' /><BR><div class='photo_txt'>&nbsp;<BR><BR></div>
